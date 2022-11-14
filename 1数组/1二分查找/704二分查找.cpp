@@ -53,6 +53,7 @@ int main() {
     vector<int> nums = {-1, 0, 3, 5, 9, 12};
     Solution solution;
     int target = 12;
+    cout << "search result is: " << endl;
     cout << solution.search(nums, target) << endl;
     return 0;
 }
