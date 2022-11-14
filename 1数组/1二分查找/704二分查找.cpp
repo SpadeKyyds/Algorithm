@@ -52,7 +52,7 @@ public:
 int main() {
     vector<int> nums = {-1, 0, 3, 5, 9, 12};
     Solution solution;
-    int target = 9;
+    int target = 12;
     cout << solution.search(nums, target) << endl;
     return 0;
 }
