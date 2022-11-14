@@ -29,7 +29,7 @@
 #include <vector>
 using namespace std;
 
-// 时间复杂度O(logn) 空间复杂度O(1)
+// 时间复杂度为O(logn) 空间复杂度为O(1)
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
