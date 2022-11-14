@@ -49,5 +49,5 @@
         "set": "cpp",
         "map": "cpp"
     },
-    "ros.distro": "humble"
+    // "ros.distro": "humble"
 }
