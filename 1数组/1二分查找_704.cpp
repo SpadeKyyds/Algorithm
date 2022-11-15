@@ -51,7 +51,7 @@ public:
 };
 
 // 法二 左闭右开
-class Solution2 {
+class Solution1 {
 public:
     int search(vector<int>& nums, int target) {
         int right = nums.size(); //这里就不需要减一
@@ -73,11 +73,11 @@ public:
 int main() {
     vector<int> nums = {-1, 0, 3, 5, 9, 12};
     Solution solution;
-    Solution2 solution2;
+    Solution1 solution1;
     int target = 12;
     cout << solution.search(nums, target) << endl;
 
     cout << "search2 result is: " << endl;
-    cout << solution2.search(nums, target) << endl;
+    cout << solution1.search(nums, target) << endl;
     return 0;
 }
