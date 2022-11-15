@@ -30,6 +30,7 @@
 using namespace std;
 
 // 时间复杂度O(logn) 空间复杂度O(1)
+// 法一 左闭右闭
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
@@ -49,11 +50,35 @@ public:
     }
 };
 
+// 法二 左闭右开
+class Solution2 {
+public:
+    int search(vector<int>& nums, int target) {
+        int right = nums.size(); //这里就不需要减一
+        int left = 0, mid;
+        while (left < right) {
+            mid = left + (right - left) / 2;
+            if (nums[mid] < target) {
+                left = mid + 1;
+            } else if (nums[mid] > target) {
+                right = mid;
+            } else {
+                return mid;
+            }
+        }
+        return -1;
+    }
+};
+
 int main() {
     vector<int> nums = {-1, 0, 3, 5, 9, 12};
     Solution solution;
+    Solution2 solution2;
     int target = 12;
     cout << "search result is: " << endl;
     cout << solution.search(nums, target) << endl;
+
+    cout << "search2 result is: " << endl;
+    cout << solution2.search(nums, target) << endl;
     return 0;
 }
