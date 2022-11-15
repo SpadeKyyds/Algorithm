@@ -75,7 +75,6 @@ int main() {
     Solution solution;
     Solution2 solution2;
     int target = 12;
-    cout << "search result is: " << endl;
     cout << solution.search(nums, target) << endl;
 
     cout << "search2 result is: " << endl;
