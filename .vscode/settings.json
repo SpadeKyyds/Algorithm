@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.json": "jsonc",
         "ostream": "cpp",
         "iostream": "cpp",
         "array": "cpp",
@@ -47,7 +48,8 @@
         "list": "cpp",
         "ctime": "cpp",
         "set": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "stack": "cpp"
     },
     // "ros.distro": "humble"
 }

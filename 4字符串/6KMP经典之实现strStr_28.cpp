@@ -45,7 +45,7 @@ public:
 
     int strStr(string haystack, string needle) {
         int next[needle.size()], i = 0, j = 0;
-        // 为什么这里要先用个变量把字符串的长度存起来才对呢？
+        // 这里是类型转换 统一转换成有符号型 因为 haystack.length() 是无符号整型
         int len1 = haystack.length();
         int len2 = needle.length();
         getNextArray(needle, next);
