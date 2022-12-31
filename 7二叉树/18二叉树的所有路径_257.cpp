@@ -24,6 +24,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <string>
 using namespace std;
 
 struct TreeNode {
@@ -37,7 +38,23 @@ struct TreeNode {
 
 class Solution {
 public:
-    vector<string> binaryTreePaths(TreeNode* root) {
+    void pathConstruct(TreeNode* root, string path, vector<string>& paths) {
+        if (root != nullptr) {
+            path += to_string(root->val);
+            if (!root->left && !root->right) {
+                paths.push_back(path);
+            } else {
+                path += "->";
+                // 这里path不需要以引用方式传入 每一级递归的path都不相同 不停地拷贝复制
+                pathConstruct(root->left, path, paths);
+                pathConstruct(root->right, path, paths);
+            }
+        }
+    }
 
+    vector<string> binaryTreePaths(TreeNode* root) {
+        vector<string> paths;
+        pathConstruct(root, "", paths);
+        return paths;
     }
 };
