@@ -49,7 +49,7 @@ public:
             // 先考虑合并左右孩子的子树 再考虑合并左右孩子节点 绝妙！
             mergeAction(&(*root1)->left, &(*root2)->left);
             mergeAction(&(*root1)->right, &(*root2)->right);
-            
+
             if ((*root1)->left != nullptr && (*root2)->left != nullptr) {
                 (*root1)->left->val += (*root2)->left->val;
             }
@@ -74,6 +74,18 @@ public:
         else {
             root1->val += root2->val;
             mergeAction(&root1, &root2);
+            return root1;
+        }
+    }
+
+// 卡尔的解法 简单明了 采用之！
+    TreeNode* mergeTrees(TreeNode* root1, TreeNode* root2) {
+        if (root2 == nullptr) return root1;
+        else if (root1 == nullptr) return root2;
+        else {
+            root1->val += root2->val;
+            root1->left = mergeTrees(root1->left, root2->left);
+            root1->right = mergeTrees(root1->right, root2->right);
             return root1;
         }
     }

@@ -40,10 +40,21 @@ struct TreeNode {
 
 class Solution {
 public:
+    // 递归法
     TreeNode* searchBST(TreeNode* root, int val) {
         if (root == nullptr) return nullptr;
         else if (val < root->val) return searchBST(root->left, val);
         else if (val > root->val) return searchBST(root->right, val);
         else return root;
+    }
+
+    // 迭代法 此题也简单
+    TreeNode* searchBST(TreeNode* root, int val) {
+        while (root != nullptr) {
+            if (val < root->val) root = root->left;
+            else if (val > root->val) root = root->right;
+            else return root;
+        }
+        return nullptr;
     }
 };
