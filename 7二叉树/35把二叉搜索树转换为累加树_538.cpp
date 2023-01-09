@@ -58,9 +58,19 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+// 右中左遍历即可 设置一个全局变量
 class Solution {
+private:
+    int value = 0;
+
 public:
     TreeNode* convertBST(TreeNode* root) {
-
+        if (root != nullptr) {
+            convertBST(root->right);
+            root->val += value;
+            value = root->val;
+            convertBST(root->left);
+        }
+        return root;
     }
 };
