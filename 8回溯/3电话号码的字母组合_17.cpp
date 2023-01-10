@@ -78,7 +78,8 @@ public:
 
 // 卡尔的写法 偷懒构建一个字符串数字映射数组
 // string也是一个STL类型 可以通过push pop 增加删除字符
-class Solution {
+// 字符串可以加上一个字符 但不能减去一个字符 减号没有重载
+class Solution1 {
 private:
     const string letterMap[10] = {
         "", //0
@@ -96,15 +97,15 @@ private:
     string letter;
 
 public:
-    void backTracking(const string& digits, int startIndex) {
-        if (startIndex == digits.size()) {
+    void backTracking(const string& digits, int index) {
+        if (index == digits.size()) {
             result.push_back(letter);
             return;
         }
-        string temp = letterMap[digits[startIndex] - '0']; //数字字符转换为数字
+        string temp = letterMap[digits[index] - '0']; //数字字符转换为数字
         for (int i = 0; i < temp.size(); ++i) {
             letter.push_back(temp[i]);
-            backTracking(digits, startIndex + 1);
+            backTracking(digits, index + 1);
             letter.pop_back();
         }
     }
