@@ -51,6 +51,6 @@ public:
 int main() {
     Solution s;
     vector<int> nums = {7, 0, 9, 6, 9, 6, 1, 7, 9, 0, 1, 2, 9, 0, 3};
-    cout << s.jump(nums) << endl;
+    cout << s.jump(nums) << "" << endl;
     return 0;
 }
