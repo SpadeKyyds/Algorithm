@@ -36,13 +36,15 @@ class Solution {
 public:
     int jump(vector<int>& nums) {
         if (nums.size() == 1) return 0;
-        int cover = 0, result = 0;
-        for (int i = 0; i <= cover; ++i) {
-            if (i + 1 > cover) ++result;
-            if (i + nums[i] > cover) {
-                cover = i + nums[i];
+        int current = 0, next = 0, result = 0;
+        // 这里要注意 范围是i < nums.size()
+        for (int i = 0; i < nums.size(); ++i) {
+            next = max(next, i + nums[i]);
+            // 这题的思路有点绕 当i触碰到current边界 且边界还触碰不到终点时 就可以进入下一层的跳跃
+            if (i == current && current < nums.size() - 1) {
+                ++result;
+                current = next;
             }
-            if (cover >= nums.size() - 1) break;
         }
         return result;
     }
