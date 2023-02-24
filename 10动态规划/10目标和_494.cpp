@@ -46,7 +46,7 @@ using namespace std;
 // 回溯 暴力解法 
 // 时间复杂度O(2^n) n为nums数组的长度 每一个元素都有两种取法 即枚举每一个元素的取值
 // 空间复杂度O(n) 取决于递归调用的栈空间
-class Solution {
+class Solution1 {
 public:
     int result = 0;
     void backTracking(vector<int>& nums, int target, int start) {
@@ -66,6 +66,7 @@ public:
 };
 
 // 动态规划的解法 但是我不太理解 后续再刷的时候仔细看
+// dp[j]:元素之和等于j的方案数
 class Solution {
 public:
     int findTargetSumWays(vector<int>& nums, int target) {
@@ -85,3 +86,12 @@ public:
         return dp[capacity];
     }
 };
+
+int main() {
+    Solution s;
+    int target = 3;
+    vector<int> nums{1, 1, 1, 1, 1};
+
+    cout << s.findTargetSumWays(nums, target) << endl;
+    return 0;
+}
