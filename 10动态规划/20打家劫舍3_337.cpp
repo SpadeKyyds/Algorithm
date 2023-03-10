@@ -47,9 +47,25 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+// 树形DP 时间复杂度O(n):每个节点只遍历一次  空间复杂度O(logn):递归系统栈空间
+// dp数组就是一个二维的数组 表示当前节点偷与不偷所能得到的最大金币
+// 须采取后序遍历 当前节点偷与不偷所带来的金币数参考叶子节点的偷与不偷
+// 递归返回的过程中带来了下层节点偷与不偷的最大收益 一直返回到根节点 体现了递归的精髓
+// 本题作为树形DP的第一道题目 没有做出来 树的遍历掌握还是不够
 class Solution {
 public:
-    int rob(TreeNode* root) {
+    vector<int> robTree(TreeNode* current) {
+        if (current == nullptr) return {0, 0};
+        vector<int> left = robTree(current->left);
+        vector<int> right = robTree(current->right);
+        int robVal = current->val + left[0] + right[0];
+        int not_robVal = max(left[0], left[1]) + max(right[0], right[1]);
+        return {not_robVal, robVal};
+    }
 
+    int rob(TreeNode* root) {
+        vector<int> result;
+        result = robTree(root);
+        return max(result[0], result[1]);
     }
 };
