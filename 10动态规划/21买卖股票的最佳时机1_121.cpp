@@ -64,7 +64,7 @@ public:
         dp[0][0] = -prices[0];
         dp[0][1] = 0;
         for (int i = 1; i < prices.size(); ++i) {
-            dp[i][0] = max(dp[i - 1][0], -prices[i]); //单次买入体现在这里 后续继续写的时候再体会一次
+            dp[i][0] = max(dp[i - 1][0], 0 - prices[i]); //单次买入 买的时候手上的现金为0
             dp[i][1] = max(dp[i - 1][1], dp[i - 1][0] + prices[i]);
         }
         return max(dp[prices.size() - 1][0], dp[prices.size() - 1][1]);
