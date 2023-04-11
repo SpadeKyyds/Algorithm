@@ -66,5 +66,7 @@
         "thread": "cpp",
         "cinttypes": "cpp"
     },
+    // "C_Cpp.errorSquiggles": "disabled",
+    "C_Cpp.errorSquiggles": "enabled",
     // "ros.distro": "humble"
 }

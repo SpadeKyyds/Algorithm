@@ -28,11 +28,30 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
+// dp[i][j]: 以 i-1 为结尾的nums1和以 j-1 为结尾的nums2的最长重复子数组的长度
 class Solution {
 public:
     int findLength(vector<int>& nums1, vector<int>& nums2) {
-
+        int n = nums1.size(), m = nums2.size();
+        vector<vector<int> > dp(n + 1, vector<int>(m + 1, 0));
+        int ans = 0;
+        for (int i = n - 1; i >= 0; --i) {
+            for (int j = m - 1; j >= 0; --j) {
+                dp[i][j] = nums1[i] == nums2[j] ? dp[i + 1][j + 1] + 1 : 0;
+                ans = max(ans, dp[i][j]);
+            }
+        }
+        return ans;
     }
 };
+
+int main() {
+    vector<int> nums1 = {1, 2, 3, 2, 1};
+    vector<int> nums2 = {3, 2, 1, 4, 7};
+    Solution s;
+    cout << s.findLength(nums1, nums2) << endl;
+    return 0;
+}
