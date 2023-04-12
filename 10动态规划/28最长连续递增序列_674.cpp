@@ -37,6 +37,7 @@ using namespace std;
 
 // dp[i]:以nums[i]为结尾的数组中 连续严格递增子序列的最大长度
 // 注意结尾一定是有nums[i]的，因而dp[nums.size() - 1]不一定为最大值
+// 结合上一题非连续递增子序列得出结论：若是连续就用一层循环 非连续的递增子序列就用两层循环
 class Solution {
 public:
     int findLengthOfLCIS(vector<int>& nums) {

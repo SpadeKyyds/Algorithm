@@ -61,7 +61,7 @@ using namespace std;
 // 动态规划解法
 // 时间复杂度O(n^2) 空间复杂度O(n)
 // dp[i]:以nums[i]为结尾的数组中 最长严格递增子序列的长度
-// 注意这里最后取最大值的时候 并不是dp数组的最后一个值 应该是dp数组中的最大值
+// 注意这里最后取最大值的时候 并不是dp数组的最后一个值 因为最长递增子序列不一定以最后一个元素为结尾
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
