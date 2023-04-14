@@ -51,9 +51,17 @@ public:
         for (int i = 1; i <= text1.size(); ++i) {
             for (int j = 1; j <= text2.size(); ++j) {
                 if (text1[i - 1] == text2[j - 1]) dp[i][j] = dp[i - 1][j - 1] + 1;
+                // 很妙 后续遇到相似的题 再细细体会
                 else dp[i][j] = max(dp[i][j - 1], dp[i - 1][j]);   //要求不连续 和最长重复子数组的区别体现在这里
             }
         }
         return dp[text1.size()][text2.size()];
     }
 };
+
+int main() {
+    string text1 = "abcde", text2 = "ace";
+    Solution s;
+    cout << s.longestCommonSubsequence(text1, text2) << endl;
+    return 0;
+}

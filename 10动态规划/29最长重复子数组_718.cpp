@@ -32,24 +32,25 @@
 using namespace std;
 
 // LeetCode官方解答版本 较难理解
-class Solution {
-public:
-    int findLength(vector<int>& nums1, vector<int>& nums2) {
-        int n = nums1.size(), m = nums2.size();
-        vector<vector<int> > dp(n + 1, vector<int>(m + 1, 0));
-        int ans = 0;
-        for (int i = n - 1; i >= 0; --i) {
-            for (int j = m - 1; j >= 0; --j) {
-                dp[i][j] = nums1[i] == nums2[j] ? dp[i + 1][j + 1] + 1 : 0;
-                ans = max(ans, dp[i][j]);
-            }
-        }
-        return ans;
-    }
-};
+// class Solution {
+// public:
+//     int findLength(vector<int>& nums1, vector<int>& nums2) {
+//         int n = nums1.size(), m = nums2.size();
+//         vector<vector<int> > dp(n + 1, vector<int>(m + 1, 0));
+//         int ans = 0;
+//         for (int i = n - 1; i >= 0; --i) {
+//             for (int j = m - 1; j >= 0; --j) {
+//                 dp[i][j] = nums1[i] == nums2[j] ? dp[i + 1][j + 1] + 1 : 0;
+//                 ans = max(ans, dp[i][j]);
+//             }
+//         }
+//         return ans;
+//     }
+// };
 
 // 卡尔代码随想录版本
-// dp[i][j]: 以 i-1 为结尾的nums1和以 j-1 为结尾的nums2的最长重复子数组的长度
+// dp[i][j]: 以 i-1 为结尾的nums1和以 j-1 "为结尾的"(必须要以之为结尾)nums2的最长重复子数组的长度
+// 这里这样设置的目的是为了初始化的时候方便 递推公式表达式可以统一
 class Solution {
 public:
     int findLength(vector<int>& nums1, vector<int>& nums2) {
@@ -58,6 +59,7 @@ public:
         for (int i = 1; i <= nums1.size(); ++i) {
             for (int j = 1; j <= nums2.size(); ++j) {
                 if (nums1[i - 1] == nums2[j - 1]) {
+                    // 这里相当于是斜线化处理,即下一个dp的状态值由斜线左上角的dp值得到 因为这种相等子数组要求连续
                     dp[i][j] = dp[i - 1][j - 1] + 1;
                 }
                 if (dp[i][j] > result) result = dp[i][j];
