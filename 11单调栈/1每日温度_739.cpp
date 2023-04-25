@@ -29,3 +29,51 @@
     著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 
+#include <iostream>
+#include <stack>
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    vector<int> dailyTemperatures(vector<int>& temperatures) {
+        vector<int> result(temperatures.size());
+        stack<int> monotonousStack;
+        for (int i = 0; i < temperatures.size(); ++i) {
+            if (monotonousStack.empty() || temperatures[i] <= temperatures[monotonousStack.top()]) {
+                monotonousStack.push(i);
+            } else {
+                while (!monotonousStack.empty() && temperatures[i] > temperatures[monotonousStack.top()]) {
+                    result[monotonousStack.top()] = i - monotonousStack.top();
+                    monotonousStack.pop();
+                }
+                monotonousStack.push(i);
+            }
+        }
+        return result;
+    }
+};
+
+// 精简版本
+class Solution {
+public:
+    vector<int> dailyTemperatures(vector<int>& temperatures) {
+        vector<int> result(temperatures.size());
+        stack<int> monotonousStack;
+        for (int i = 0; i < temperatures.size(); ++i) {
+            while (!monotonousStack.empty() && temperatures[i] > temperatures[monotonousStack.top()]) {
+                result[monotonousStack.top()] = i - monotonousStack.top();
+                monotonousStack.pop();
+            }
+            monotonousStack.push(i);
+        }
+        return result;
+    }
+};
+
+int main() {
+    Solution s;
+    vector<int> temperatures{73, 74, 75, 71, 69, 72, 76, 73};
+    s.dailyTemperatures(temperatures);
+    return 0;
+}
