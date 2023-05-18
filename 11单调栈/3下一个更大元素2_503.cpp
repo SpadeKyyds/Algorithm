@@ -36,9 +36,22 @@
 #include <unordered_map>
 using namespace std;
 
+// 碰到此种环形的题目 要想到取余 
 class Solution {
 public:
     vector<int> nextGreaterElements(vector<int>& nums) {
-
+        vector<int> result(nums.size(), -1);
+        stack<int> monotonousStack;
+        // 这里i < 2 * nums.size()即转两圈
+        for (int i = 0; i < 2 * nums.size(); ++i) {
+            int j = i % nums.size();
+            // 这里nums[j] > nums[monotonousStack.top()]是取 > 而不能是 = 
+            while (!monotonousStack.empty() && nums[j] > nums[monotonousStack.top()]) {
+                result[monotonousStack.top()] = nums[j];
+                monotonousStack.pop();
+            }
+            monotonousStack.push(j);
+        }
+        return result;
     }
 };
