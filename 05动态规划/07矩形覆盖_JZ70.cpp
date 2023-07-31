@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+// 这题其实就是一个斐波那契问题 不知道规律就不知道怎么做
 class Solution {
 public:
     int rectCover(int number) {
